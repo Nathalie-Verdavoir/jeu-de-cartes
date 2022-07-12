@@ -10,7 +10,21 @@ class Deck
 
     public function __construct() {
         $this->colors = ['S','H','D','C'];
+        $keys = array_keys( $this->colors);
+        shuffle($keys);
+        foreach($keys as $key) {
+            $new[$key] =  $this->colors[$key];
+        }
+        $this->colors = $new;
+
         $this->values = ['2','3','4','5','6','7','8','9','T','J','Q','K','A'];
+        $keys = array_keys( $this->values);
+        shuffle($keys);
+        foreach($keys as $key) {
+            $new[$key] =  $this->values[$key];
+        }
+        $this->values = $new;
+        
         $this->initialiseCards();
     }
 

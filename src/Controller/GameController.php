@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Deck;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,6 +20,34 @@ class GameController extends AbstractController
 
         return $this->render('game/index.html.twig', [
             "cards" => $deck->getDeck(),
+        ]);
+    }
+
+    /**
+     * @Route("/random/{numberOfCards}", name="game_index_random")
+     */
+    public function gameHand(int $numberOfCards = 5, Request $request): Response
+    {
+        $session = $request->getSession();  
+        $deck = new Deck();
+        $colors = $deck->colors; 
+        
+        $values = $deck->values; 
+        $cards = $deck->deck;
+        $result =  [];
+       
+            $index = array_rand($cards,$numberOfCards); 
+            for ($i=0;$i < $numberOfCards ;$i++){
+                 $card = $cards[$index[$i]];    
+                $result[$index[$i]] = $cards[$index[$i]];  
+                unset($cards[$index[$i]]); 
+            }
+        $session->set('cards', $cards);
+        $session->set('result', $result);
+        return $this->render('game/play.html.twig', [
+            "card" => $card,
+            "colors" => $colors,
+            "values" => $values,
         ]);
     }
 }

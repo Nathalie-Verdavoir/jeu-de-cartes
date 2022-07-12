@@ -8,10 +8,10 @@
         {% set c=0 %}
         {% for card in cards %}
             {% if c == 0 %}
-                <div>
+                <div class="card d-flex flex-row justify-content-around my-3 py-1">
             {% endif %}   
                 {% set c=c+1 %}
-                <span >{{card.color}}{{card.value}}</span>
+                <span class="cards border d-inline f32 {{card.color}}{{card.value}}" title="{{card.color}}{{card.value}}"></span>
             {% if c == 13 %}
                 {% set c=0 %}
                 </div>
