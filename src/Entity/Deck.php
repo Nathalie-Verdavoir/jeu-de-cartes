@@ -4,12 +4,14 @@ namespace App\Entity;
 
 class Deck
 {
+    public array $goodOrderColors;
+    public array $goodOrderValues;
     public array $colors;
     public array $values;
     public array $deck;
 
     public function __construct() {
-        $this->colors = ['S','H','D','C'];
+        $this->colors = $this->goodOrderColors = ['C','D','H','S'];
         $keys = array_keys( $this->colors);
         shuffle($keys);
         foreach($keys as $key) {
@@ -17,7 +19,7 @@ class Deck
         }
         $this->colors = $new;
 
-        $this->values = ['2','3','4','5','6','7','8','9','T','J','Q','K','A'];
+        $this->values = $this->goodOrderValues = ['2','3','4','5','6','7','8','9','T','J','Q','K','A'];
         $keys = array_keys( $this->values);
         shuffle($keys);
         foreach($keys as $key) {

@@ -28,26 +28,31 @@ class GameController extends AbstractController
      */
     public function gameHand(int $numberOfCards = 5, Request $request): Response
     {
+        
         $session = $request->getSession();  
         $deck = new Deck();
         $colors = $deck->colors; 
-        
+        $goodOrderColors = $deck->goodOrderColors;
         $values = $deck->values; 
+        $goodOrderValues = $deck->goodOrderValues; 
         $cards = $deck->deck;
         $result =  [];
        
             $index = array_rand($cards,$numberOfCards); 
-            for ($i=0;$i < $numberOfCards ;$i++){
-                 $card = $cards[$index[$i]];    
+            for ($i=0;$i < $numberOfCards ;$i++){   
                 $result[$index[$i]] = $cards[$index[$i]];  
                 unset($cards[$index[$i]]); 
             }
         $session->set('cards', $cards);
         $session->set('result', $result);
+        
+
+
         return $this->render('game/play.html.twig', [
-            "card" => $card,
             "colors" => $colors,
             "values" => $values,
+            "goodOrderColors" => $goodOrderColors,
+            "goodOrderValues" => $goodOrderValues,
         ]);
     }
 }
