@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Deck;
+use App\Entity\Game;
+use App\Form\GameType;
+use App\Form\NumberOfCardsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,12 +18,32 @@ class GameController extends AbstractController
      */
     public function gameIndex(): Response
     {
-        // variables needed for if game is played fullscreen instead of from iframe in /game
+
         $deck = new Deck();
 
         return $this->render('game/index.html.twig', [
             "cards" => $deck->getDeck(),
         ]);
+    }
+
+    /**
+     * @Route("/", name="game_init", methods={"GET","HEAD"})
+     */
+    public function gameInit(Request $request): Response
+    {   $numberOfCards = new Game();
+        $form = $this->createForm(GameType::class, $numberOfCards);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+        return $this->redirectToRoute('game_index_random', [
+            "numberOfCards" => $form->getData('num')->getNum(),
+        ]);
+        }
+
+        return $this->renderForm('game/init.html.twig',array(
+            'num' => $numberOfCards,
+            ), Response::HTTP_SEE_OTHER);
+        
     }
 
     /**
