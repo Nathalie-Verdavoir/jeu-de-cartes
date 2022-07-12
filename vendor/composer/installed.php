@@ -5,11 +5,29 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '35db3312df7fe1926ce5c4f0fd0874ebfb248c18',
+        'reference' => '0baf8576e55e37a38dd41ef3a9b0aab7fbf4c525',
         'name' => 'symfony/skeleton',
         'dev' => true,
     ),
     'versions' => array(
+        'doctrine/annotations' => array(
+            'pretty_version' => '1.13.3',
+            'version' => '1.13.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../doctrine/annotations',
+            'aliases' => array(),
+            'reference' => '648b0343343565c4a056bfc8392201385e8d89f0',
+            'dev_requirement' => false,
+        ),
+        'doctrine/lexer' => array(
+            'pretty_version' => '1.2.3',
+            'version' => '1.2.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../doctrine/lexer',
+            'aliases' => array(),
+            'reference' => 'c268e882d4dbdd85e36e4ad69e02dc284f89d229',
+            'dev_requirement' => false,
+        ),
         'paragonie/random_compat' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -81,6 +99,15 @@
             'provided' => array(
                 0 => '1.0',
             ),
+        ),
+        'sensio/framework-extra-bundle' => array(
+            'pretty_version' => 'v6.2.6',
+            'version' => '6.2.6.0',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../sensio/framework-extra-bundle',
+            'aliases' => array(),
+            'reference' => '6bd976c99ef3f78e31c9490a10ba6dd8901076eb',
+            'dev_requirement' => false,
         ),
         'symfony/asset' => array(
             'pretty_version' => 'v5.0.11',
@@ -376,7 +403,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '35db3312df7fe1926ce5c4f0fd0874ebfb248c18',
+            'reference' => '0baf8576e55e37a38dd41ef3a9b0aab7fbf4c525',
             'dev_requirement' => false,
         ),
         'symfony/stopwatch' => array(
